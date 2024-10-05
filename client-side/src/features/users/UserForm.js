@@ -1,29 +1,43 @@
 import { addNewUser, fetchUsers } from "./usersApi";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const UserForm = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { users, status } = useSelector(state => state.users);
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [roles, setRoles] = useState(['Employee']) //By default Employee role
-    const [status, setStatus] = useState('true')
+    const [userStatus, setUserStatus] = useState('true')
     const [errors, setError] = useState(null);
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    useEffect(() => {
+        if (status === 'idle') {
+            dispatch(fetchUsers())
+        }
+    }, [status, dispatch])
+
+    const duplicateUser = users.find(user => user.username === username)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!username || !password || roles.length == 0) {
+        if (!username || !password || roles.length === 0) {
             setError("Username, Password and roles are required")
             return
+        }
+
+        if (duplicateUser) {
+            setError("Username already exists")
+            return;
         }
 
         const addUser = {
             username,
             password,
             roles,
-            status
+            status: userStatus
         }
 
         try {
@@ -81,9 +95,9 @@ const UserForm = () => {
                 <div className="my-9">
                     <label className="block text-gray-700"> Status  </label>
                     <select
-                        value={status}
+                        value={userStatus}
                         onChange={e => {
-                            setStatus(e.target.value)
+                            setUserStatus(e.target.value)
                         }}
                         className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                         required

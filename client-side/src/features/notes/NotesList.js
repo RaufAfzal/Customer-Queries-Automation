@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { fetchNotes, deleteNote } from "./notesApi"
+import { fetchNotes } from "./notesApi"
 import { Link } from "react-router-dom"
 const NotesList = () => {
 
@@ -35,7 +35,7 @@ const NotesList = () => {
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Title</th>
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Text</th>
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Ticket</th>
-                        <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Username</th>
+                        <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Assigned to</th>
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Status</th>
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Actions</th>
                     </tr>
@@ -54,7 +54,7 @@ const NotesList = () => {
                                 </span>
                             </td>
                             <td className="py-3 px-4">
-                                <Link to={`/dash/notes/edit${note._id}`} className="text-blue-500 hover:text-blue-700 mr-2">
+                                <Link to={`/dash/notes/edit/${note._id}`} className="text-blue-500 hover:text-blue-700 mr-2">
                                     Edit
                                 </Link>
                                 <button

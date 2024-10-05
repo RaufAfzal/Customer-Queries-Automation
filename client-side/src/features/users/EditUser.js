@@ -10,19 +10,14 @@ const EditUser = () => {
     const dispatch = useDispatch();
     const { users, status, error } = useSelector(state => state.users);
 
-    console.log(users)
-
     const userToEdit = users.find(user => user._id === id)
-
-    console.log("user user ", userToEdit)
 
     const [username, setUsername] = useState(userToEdit?.username || '')
     const [roles, setRoles] = useState(userToEdit?.roles || ['Employee']);
     const [userStatus, setUserStatus] = useState(userToEdit?.status || false);
     const [formError, setFormError] = useState('')
 
-
-
+    const duplicateUser = users.find(user => user.username === username && user._id !== id)
 
     useEffect(() => {
         if (status === 'idle') {
@@ -42,6 +37,11 @@ const EditUser = () => {
         e.preventDefault();
         if (!username || roles.length === 0) {
             setFormError('Username and one roles is Required')
+            return;
+        }
+
+        if (duplicateUser) {
+            setFormError("Username already exists")
             return;
         }
 
@@ -66,7 +66,7 @@ const EditUser = () => {
         return <p className="text-center text-gray-500">Loading users...</p>;
     }
 
-    if (status === "failde") {
+    if (status === "failed") {
         return <p className="text-center text-red-500">Error: {error} </p>
     }
 
@@ -75,7 +75,7 @@ const EditUser = () => {
             <h2 className="text-2xl font-bold mb-4">Edit User</h2>
             {formError && <p className="text-red-500 mb-4">{formError}</p>}
             <form onSubmit={handleSubmit}>
-                <div className="mb-4">
+                <div className="mb-4 my-9">
                     <label className="block text-gray-700">Username</label>
                     <input
                         type="text"
@@ -85,7 +85,7 @@ const EditUser = () => {
                         required
                     />
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 my-9">
                     <label className="block text-gray-700">Roles </label>
                     <select
                         multiple
@@ -103,7 +103,7 @@ const EditUser = () => {
                     </select>
 
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 my-9">
                     <label className="block text-gray-700"> Status  </label>
                     <select
                         value={userStatus.toString()}
@@ -118,7 +118,7 @@ const EditUser = () => {
                     </select>
 
                 </div>
-                <button type="submit" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
+                <button type="submit" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300 my-9">
                     Update User
                 </button>
             </form>

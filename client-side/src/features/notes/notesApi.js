@@ -13,7 +13,7 @@ export const addNewNote = createAsyncThunk('notes/addNewPost', async (noteData) 
 
 export const updateNote = createAsyncThunk('notes/updateNote', async (noteData) => {
     try {
-        const response = await axiosInstance.put(`notes/${noteData._id}`, noteData)
+        const response = await axiosInstance.patch('notes', noteData)
         return response.data;
     } catch (err) {
         return noteData;

@@ -8,6 +8,8 @@ import NotesList from "./features/notes/NotesList";
 import UsersList from "./features/users/UsersList";
 import EditUser from "./features/users/EditUser";
 import UserForm from "./features/users/UserForm";
+import NoteForm from "./features/notes/NoteForm";
+import EditNote from "./features/notes/EditNote";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route index element={<Welcome />} />
           <Route path="notes">
             <Route index element={<NotesList />} />
+            <Route path="newnote" element={<NoteForm />} />
+            <Route path="edit/:id" element={<EditNote />} />
           </Route>
           <Route path="users">
             <Route index element={<UsersList />} />

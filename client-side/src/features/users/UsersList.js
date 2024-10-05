@@ -7,8 +7,6 @@ const UsersList = () => {
     const dispatch = useDispatch();
     const { users, status, error } = useSelector(state => state.users);
 
-    console.log(users)
-
     useEffect(() => {
         if (status === 'idle') {
             dispatch(fetchUsers())

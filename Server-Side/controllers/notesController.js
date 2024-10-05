@@ -36,22 +36,22 @@ const createNewNote = asyncHandler(async (req, res) => {
 
 const updateNote = asyncHandler(async (req, res) => {
     const { _id, user, title, text, status } = req.body
-    console.log(_id)
 
     if (!_id || !user || !title || !text || typeof status !== 'boolean') {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
     const note = await Note.findById(_id).exec()
+    console.log('note is', note)
 
     if (!note) {
         return res.status(400).json({ message: 'Note not found' })
     }
 
     const duplicate = await Note.findOne({ title }).lean().exec()
-    console.log(duplicate._id)
+    console.log("Duplicate is", duplicate)
 
-    if (duplicate && duplicate?._id.toString() !== _id) {
+    if (duplicate && duplicate._id.toString() !== _id) {
         return res.status(409).json({ message: 'Duplicate note title' })
     }
 
@@ -81,9 +81,9 @@ const deleteNote = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'Note not found' })
     }
 
-    const reply = `Note '${result.title}' with ID ${result._id} deleted`
-
     const result = await note.deleteOne()
+
+    const reply = `Note '${result.title}' with ID ${result._id} deleted`
 
     res.json(reply)
 })
