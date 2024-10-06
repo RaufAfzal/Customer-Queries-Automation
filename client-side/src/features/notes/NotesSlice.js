@@ -44,7 +44,7 @@ export const NotesSlice = createSlice({
             //Delete a note
             .addCase(deleteNote.fulfilled, (state, action) => {
                 state.status = "succeeded"
-                const note = state.notes.filter(note => note.id !== action.payload._id);
+                const note = state.notes.filter(note => note._id !== action.payload._id);
                 state.notes = note
             })
     }

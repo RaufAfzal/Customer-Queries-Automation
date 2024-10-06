@@ -20,16 +20,15 @@ export const updateUser = createAsyncThunk('users/updateUser', async (existingUs
     }
 })
 
-export const deleteUser = createAsyncThunk('users/deleteUser', async (existingUser, { rejectWithValue }) => {
-    const { _id } = existingUser
+export const deleteUser = createAsyncThunk('users/deleteUser', async (_id, { rejectWithValue }) => {
     try {
-        const response = await axiosInstance.delete(`users/${existingUser._id}`, existingUser)
+        const response = await axiosInstance.delete('users', { data: { _id } });
         if (response?.status === 200) {
             return { _id, message: response.data.message };
         } else {
-            return rejectWithValue('Failed to delete the post');
+            return rejectWithValue('Failed to delete the user');
         }
     } catch (err) {
-        return rejectWithValue('Failed to delete the post')
+        return rejectWithValue('Failed to delete the user');
     }
-})
+});

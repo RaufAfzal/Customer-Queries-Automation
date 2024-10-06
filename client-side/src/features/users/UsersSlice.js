@@ -44,7 +44,7 @@ export const UsersSlice = createSlice({
             //Delete a user
             .addCase(deleteUser.fulfilled, (state, action) => {
                 state.status = "succeeded"
-                const user = state.users.filter(user => user.id !== action.payload._id);
+                const user = state.users.filter(user => user._id !== action.payload._id);
                 state.users = user
             })
     }

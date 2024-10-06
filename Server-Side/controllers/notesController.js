@@ -68,7 +68,6 @@ const updateNote = asyncHandler(async (req, res) => {
 
 const deleteNote = asyncHandler(async (req, res) => {
     const { _id } = req.body
-    console.log(_id)
 
     if (!_id) {
         return res.status(400).json({ message: 'Note ID required' })

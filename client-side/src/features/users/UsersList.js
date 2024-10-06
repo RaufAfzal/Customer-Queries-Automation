@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteUser, fetchUsers } from './usersApi';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-
 const UsersList = () => {
     const dispatch = useDispatch();
     const { users, status, error } = useSelector(state => state.users);
@@ -15,8 +14,7 @@ const UsersList = () => {
 
     const handleDelete = (_id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
-            dispatch(deleteUser({ _id }));
-            deleteUser(fetchUsers())
+            dispatch(deleteUser(_id));
         }
     };
 

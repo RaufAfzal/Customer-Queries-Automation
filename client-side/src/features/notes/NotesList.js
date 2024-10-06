@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { fetchNotes } from "./notesApi"
+import { fetchNotes, deleteNote } from "./notesApi"
 import { Link } from "react-router-dom"
 const NotesList = () => {
 
@@ -14,8 +14,9 @@ const NotesList = () => {
 
     }, [status, dispatch])
 
-    const handleDelete = (e) => {
-        console.log(e.target.value)
+    const handleDelete = (_id) => {
+        console.log("id is ", _id)
+        dispatch(deleteNote(_id))
     }
 
 
@@ -46,7 +47,7 @@ const NotesList = () => {
                             <td className="py-3 px-4">{note.title}</td>
                             <td className="py-3 px-4">{note.text}</td>
                             <td className="py-3 px-4">{note.ticket}</td>
-                            <td className="py-3 px-4">{note.user.username}</td>
+                            {/* <td className="py-3 px-4">{note.user.username}</td> */}
                             <td className="py-3 px-4">
                                 <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
                                     ${note.status ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>

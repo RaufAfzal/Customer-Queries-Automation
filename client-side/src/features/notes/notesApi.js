@@ -20,10 +20,9 @@ export const updateNote = createAsyncThunk('notes/updateNote', async (noteData) 
     }
 })
 
-export const deleteNote = createAsyncThunk('notes/deleteNote', async (noteData, { rejectWithValue }) => {
-    const { _id } = noteData
+export const deleteNote = createAsyncThunk('notes/deleteNote', async (_id, { rejectWithValue }) => {
     try {
-        const response = await axiosInstance.delete(`notes/${noteData._id}`, noteData)
+        const response = await axiosInstance.delete(`notes`, { data: { _id } })
         if (response?.status === 200) {
             return { _id, message: response.data.message };
         } else {
