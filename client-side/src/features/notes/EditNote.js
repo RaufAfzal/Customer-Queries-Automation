@@ -11,6 +11,7 @@ const EditNote = () => {
     const { notes, status, error } = useSelector(state => state.notes);
 
     const noteToEdit = notes.find(note => note._id === id)
+    console.log('note to edit is', noteToEdit)
 
     const [title, setTitle] = useState(noteToEdit?.title || '')
     const [text, setText] = useState(noteToEdit?.text || '')
