@@ -85,4 +85,5 @@ function parseJwt(token) {
     }
 }
 
-export default AuthSlice.reducer;
+export const authReducer = AuthSlice.reducer; // Export the reducer
+export default AuthSlice; 

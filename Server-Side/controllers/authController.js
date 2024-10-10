@@ -36,7 +36,7 @@ const login = asyncHandler(async (req, res) => {
             }
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: '1m' } // Typically short-lived
+        { expiresIn: '1d' } // Typically short-lived
     );
 
     const refreshToken = jwt.sign(
@@ -49,8 +49,8 @@ const login = asyncHandler(async (req, res) => {
 
     res.cookie('jwt', refreshToken, {
         httpOnly: true,
-        secure: isProduction, // Set to true in production
-        sameSite: isProduction ? 'None' : 'Lax', // 'None' for cross-site in production, 'Lax' for development
+        secure: false, // Set to true in production
+        sameSite: 'Lax', // 'None' for cross-site in production, 'Lax' for development
         maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
