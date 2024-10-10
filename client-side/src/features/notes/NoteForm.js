@@ -82,11 +82,13 @@ const NoteForm = () => {
                         className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                     >
                         <option value="">Select a user</option>
-                        {notes.map((note, index) => (
+                        <option value="Fakhar Zaman">Fakhar Zaman</option>
+                        <option value="Virat Kohli">Virat Kohli</option>
+                        {/* {notes.map((note, index) => (
                             <option key={index} value={note?.user?._id}>
                                 {note.user?.username || "Unknown user"}
                             </option>
-                        ))}
+                        ))} */}
                     </select>
                 </div>
 

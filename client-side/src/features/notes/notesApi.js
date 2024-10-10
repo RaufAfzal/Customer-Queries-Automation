@@ -1,4 +1,4 @@
-import axiosInstance from "../../app/axiosInstance"
+import axiosInstance from "../../app/api/axiosInstance"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {
@@ -6,7 +6,7 @@ export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {
     return response.data
 })
 
-export const addNewNote = createAsyncThunk('notes/addNewPost', async (noteData) => {
+export const addNewNote = createAsyncThunk('notes/addNewNote', async (noteData) => {
     const response = await axiosInstance.post('notes', noteData)
     return response.data
 })

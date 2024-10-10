@@ -36,7 +36,7 @@ const NotesList = () => {
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Title</th>
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Text</th>
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Ticket</th>
-                        <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Assigned to</th>
+                        {/* <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Assigned to</th> */}
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Status</th>
                         <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Actions</th>
                     </tr>

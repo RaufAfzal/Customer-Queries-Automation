@@ -1,8 +1,9 @@
-import axiosInstance from "../../app/axiosInstance"
+import axiosInstance from "../../app/api/axiosInstance"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
     const response = await axiosInstance.get('users')
+    // console.log("response data", response)
     return response.data
 })
 
