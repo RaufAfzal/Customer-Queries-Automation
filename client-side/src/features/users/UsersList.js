@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteUser, fetchUsers } from './usersApi';
+import { fetchUsers, deleteUser } from './usersApi';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 const UsersList = () => {

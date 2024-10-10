@@ -50,8 +50,4 @@ export const UsersSlice = createSlice({
     }
 })
 
-
-
-
-
 export default UsersSlice.reducer

@@ -17,10 +17,9 @@ connectDB();
 
 app.use(cors(corsOptionsDelegate))
 
-app.use(express.json())
-
 app.use(cookieParser())
 
+app.use(express.json())
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 
