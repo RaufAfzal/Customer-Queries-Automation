@@ -19,7 +19,11 @@ const noteSchema = new mongoose.Schema(
         status: {
             type: Boolean,
             default: false
-        }
+        },
+        attachment: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Attachment'
+        }]
     },
     {
         timestamps: true

@@ -5,8 +5,6 @@ const asyncHandler = require('express-async-handler');
 
 const login = asyncHandler(async (req, res) => {
     const { username, password } = req.body;
-    console.log('Username:', username);
-    console.log('Password:', password);
 
     const isProduction = process.env.NODE_ENV === 'production';
 
